@@ -1,51 +1,88 @@
 # # dictionary (사전처럼)
-#
-# # 리스트와 비슷하나 순서를 따지지 않는다. (인덱스가 없다)
-# # 키와 값이 pair가 원소가 된다.
-# # { 'key' : 'value' }
-#
-#
-# fruits = {'apple':'사과', 'watermelon':'수박'}
-# print(fruits['watermelon']) # key 를 이용하여 해당 원소에 접근한다
-#
-# # 추가 / append 가 없음. append는 list 의 함수
-# print(fruits)
-# fruits['kiwi'] = '키우이'   # 삽입
-# print(fruits)
-#
-# fruits['kiwi'] = '키위'   # 수정
-# print(fruits)
-#
-# fruits['banana'] = '바나나' # 삽입
-# # ★ key 값은 중복이 안된다. 유일해야한다!!!
-#
-# empty = {}
-# print(type(fruits), type(empty))    # 둘 다 dictionary
 
-# #dict 함수
-# test1 = [['python','3'],['english','2'],['dance','1']]     # test의 원소는 3개 (0번, 1번, 2번 방)
-# print(test1[1][0])
-# print(dict(test1))   # dictionary 로 변환
+# keys() - key 값만 추출
+# fruits = {'apple' : '사과',
+#           'watermelon' : '수박',
+#           'strawberry' : '딸기',
+#           'kiwi' : '키위',
+#           'banana' : '바나나'}
 #
-# test2 = ['ab', 'cd', 'ef']      # 문자열 구분해서 dictionary로 만들어줌
-# print(test2[1][0])
-# print(dict(test2))
+# for k in fruits:    # keys 를 안쓰고 fruits 만 돌려도 default 값으로 key 값 출력
+#     print(k)
+
+# # keys()
+# print(fruits.keys())    # key 값 추출
+# # values()
+# print(fruits.values())  # value 값 추출
+# # items()
+# print(fruits.items())   # key 와 value 동시 추출 # 튜플로 추출
+
+
+
+# # 음식 추천 프로그램 만들기 v0.1 ~
 #
-# # ★ key : value 형식이기 때문에 2개의 원소가 필요하다!!! - 짝을 맞춰줘야함.
+# alcohol_foods = {'맥주' : '치킨',
+#                  '와인' : '치즈',
+#                  '고량주' : '마라탕',
+#                  '소주' : '삼겹살'}
+#
+# alcohol = input('주문할 술(맥주/와인/고량주/소주)은? ')
+# if  alcohol in alcohol_foods.keys():    # alcohol_food 키 중에 있으면 실행
+#     print('{0}에 어울리는 안주는 {1}입니다.'.format(alcohol, alcohol_foods[alcohol]))
 
-# update() 결합
-fruits = {'apple' : '사과', 'watermelon' : '수박', 'banana' : '버내너~'}
-# print(fruits)
+# # 음식 추천 프로그램 만들기 v0.2 ~
+#
+# alcohol_foods = {'맥주' : '치킨',
+#                  '와인' : '치즈',
+#                  '고량주' : '마라탕',
+#                  '소주' : '삼겹살'}
+#
+# while True:
+#     alcohol = input('주문할 술(맥주/와인/고량주/소주/결제)은? ')
+#     if alcohol == '결제':
+#         print("안녕히 가십시오~")
+#         break
+#     if alcohol in alcohol_foods.keys():    # alcohol_food 키 중에 있으면 실행
+#         print('{0}에 어울리는 안주는 {1}입니다.'.format(alcohol, alcohol_foods[alcohol]))
+#     else:
+#         print('{0}는 판매하지 않습니다. 메뉴에서 골라주세요~'.format(alcohol))
 
-others = {'strawberry' : '딸기', 'kiwi' : '키위', 'banana' : '바나나'}
-# ★ 중복 키 있을 경우 합쳐지는 key 값의 내용으로 업데이트
-fruits.update(others) # 해당 dirctionary명.update()
-print(fruits)
 
-# del - 삭제
-del(fruits['apple'])
-print(fruits)
+# import random
+#
+# star = ['테란', '저그', '프로토스']
+# print(random.choice(star))
 
-# clear - dictionary 안 모든 원소 전체 삭제
-fruits.clear()
-print(fruits)
+# # 음식 추천 프로그램 만들기 v0.3 ~
+#
+# import random
+#
+# alcohol_foods = {'맥주' : '치킨',
+#                  '와인' : '치즈',
+#                  '고량주' : '마라탕',
+#                  '소주' : '삼겹살'}
+#
+# while True:
+#     alcohol = input('주문할 술(맥주/와인/고량주/소주/랜덤/결제)은? ')
+#     if alcohol == '결제':
+#         print("안녕히 가십시오~")
+#         break
+#     if alcohol in alcohol_foods.keys():    # alcohol_food 키 중에 있으면 실행
+#         print('{0}에 어울리는 안주는 {1}입니다.'.format(alcohol, alcohol_foods[alcohol]))
+#     elif alcohol == '아무거나':
+#         print(random.choice(list(alcohol_foods)))
+#
+#     else :
+#         print('{0}는 판매하지 않습니다. 메뉴에서 골라주세요~'.format(alcohol))
+
+alcohol_foods = {'맥주' : '치킨',
+                 '와인' : '치즈',
+                 '고량주' : '마라탕',
+                 '소주' : '삼겹살'}
+
+# copy()
+# copy_alcohol = alcohol_foods
+copy_alcohol = alcohol_foods.copy() # 별도 공간 할당해서 다른 메모리 주소 참조
+copy_alcohol['소주'] = '두부김치'
+print(copy_alcohol)
+print(alcohol_foods)
