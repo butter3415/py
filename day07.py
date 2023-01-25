@@ -1,23 +1,24 @@
-def test(start=0, end=5):
-    n = start
-    for i in range(start, end+1):
-        yield n
-        n = n + 1
+def document_info(func):    # decorator 꾸며준다. 그냥 꾸며주는 역할, closer 사용한다
+    def new_function(*args, **kwargs):
+        print('실행중인함수: ' , func.__name__)
+        print('위치 인수들: ', args)
+        print('키워드 인수들: ', kwargs)
+        result = func(*args, **kwargs)
+        print('실행결과: ', result)
+        return result
+    return new_function
 
-print(test)
-g = test(5, 10)
-# g = test()
-print(g)
+def squares(n):     # 코드 수정 X
+    return n * n
 
-for k in g:
-    print(k)
+def subtract(a, b):
+    return a - b
 
-for j in g:
-    print(j)
+info_squares = document_info(squares)
+r1 = info_squares(9)
+print(r1)
+print("================================")
 
-# a = (p for p in zip([1, 2, 3],[4, 5, 6],[7, 8, 9, 10]))     # generator
-a = (p for p in zip({(1, 1): 3.99, (1, 2): 4.31}, {(2, 1): 4.19, (2, 2): 4.01}))
-print(type(a), a)
-
-for i in a:
-    print(i)
+info_minus = document_info(subtract)
+r2 = info_minus(99, 7)
+print(r2)
