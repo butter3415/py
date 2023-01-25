@@ -9,7 +9,7 @@ def isprime(n):
     if n <= 1:
         return False
     for k in range(2, n):
-        if number % k == 0:
+        if n % k == 0:
             return False
     return True
 
