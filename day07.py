@@ -1,20 +1,19 @@
-# Lambda function (after)
+def a():            # generator
+    yield 1         # 함수가 멈추지 않고 계속 리턴함 / 일회용, 한번 순회하면 이후에 다시 순회 못함
+    yield -9        # 최종 실행 이전에 값은 모두 지워진다.
+    yield 3
 
-import random
+def b():            # normal function
+    return 1        # stop
+    return -9   # 죽은 코드
+    return 3    # die code
 
-def process(no_lists, f):
-    """
-    리스트와 함수를 받아 리스트의 원소들을 받은 함수에 모두 적용
-    :param no_lists: 리스트
-    :param f: 함수
-    :return: X
-    """
-    for no in no_lists:
-        print(f(no))
+print(type(a()), b())     # <generator object a at 0x0000024F9B74B5E0> 1
+c = a()
+print(c)
 
-numbers = [random.randint(1,10) for i in range(5)]
-print(numbers)
-process(numbers, lambda x: x * x)   # squares
-print(numbers)
-process(numbers, lambda x: x + x)   # doubles
-# Labmda = 일회용 젓가락
+for i in c:
+    print(i)
+
+for i in c:
+    print(i)
