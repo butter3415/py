@@ -1,19 +1,23 @@
-def a():            # generator
-    yield 1         # 함수가 멈추지 않고 계속 리턴함 / 일회용, 한번 순회하면 이후에 다시 순회 못함
-    yield -9        # 최종 실행 이전에 값은 모두 지워진다.
-    yield 3
+def test(start=0, end=5):
+    n = start
+    for i in range(start, end+1):
+        yield n
+        n = n + 1
 
-def b():            # normal function
-    return 1        # stop
-    return -9   # 죽은 코드
-    return 3    # die code
+print(test)
+g = test(5, 10)
+# g = test()
+print(g)
 
-print(type(a()), b())     # <generator object a at 0x0000024F9B74B5E0> 1
-c = a()
-print(c)
+for k in g:
+    print(k)
 
-for i in c:
-    print(i)
+for j in g:
+    print(j)
 
-for i in c:
+# a = (p for p in zip([1, 2, 3],[4, 5, 6],[7, 8, 9, 10]))     # generator
+a = (p for p in zip({(1, 1): 3.99, (1, 2): 4.31}, {(2, 1): 4.19, (2, 2): 4.01}))
+print(type(a), a)
+
+for i in a:
     print(i)
