@@ -8,17 +8,13 @@ def document_info(func):    # decorator 꾸며준다. 그냥 꾸며주는 역할
         return result
     return new_function
 
+@document_info
 def squares(n):     # 코드 수정 X
     return n * n
 
+@document_info
 def subtract(a, b):
     return a - b
 
-info_squares = document_info(squares)
-r1 = info_squares(9)
-print(r1)
-print("================================")
-
-info_minus = document_info(subtract)
-r2 = info_minus(99, 7)
-print(r2)
+print(squares(5))
+print(subtract(5, -99))
