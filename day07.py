@@ -1,20 +1,18 @@
-def document_info(func):    # decorator 꾸며준다. 그냥 꾸며주는 역할, closer 사용한다
-    def new_function(*args, **kwargs):
-        print('실행중인함수: ' , func.__name__)
-        print('위치 인수들: ', args)
-        print('키워드 인수들: ', kwargs)
-        result = func(*args, **kwargs)
-        print('실행결과: ', result)
-        return result
-    return new_function
+# def a():    # decorator 꾸며준다. 그냥 꾸며주는 역할, closer 사용한다
+#     def b():
+#         return "안쪽 함수 실행"
+#     return b()
+#
+# print(a())
+# print(b())  # a 함수에서만 볼 수 있다.
 
-@document_info
-def squares(n):     # 코드 수정 X
-    return n * n
+def a():    # decorator 꾸며준다. 그냥 꾸며주는 역할, closer 사용한다
+    def b():
+        return "안쪽 함수 실행"
+    return b
 
-@document_info
-def subtract(a, b):
-    return a - b
+print(a())
+c = a()
+print(c())
 
-print(squares(5))
-print(subtract(5, -99))
+# 스코프 -> 볼 수 있는 영역, 범위
