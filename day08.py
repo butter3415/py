@@ -2,11 +2,10 @@
 # 동사형으로 표현
 
 class Pokemon:
-    def __init__(self, name, owner, skills) :   # constructor, 생성자
-        self.name = name    # attribute, field, member variable
+    def __init__(self, owner, skills) :   # constructor, 생성자
         self.owner = owner
         self.skills = skills.split('/')
-        print(f'포켓몬 {name} 생성됨.')
+        print(f'포켓몬 생성됨 :', end = ' ')
 
     def info(self): # self -> 실행 시점에 객체 자신을 가르킨다.(this)
         """
@@ -18,10 +17,31 @@ class Pokemon:
             print(f'==========\n{skill}')
         print("==========")
 
-class Pikachu(Pokemon): # class 자식클래스(부모클래스):
-    pass
+    def attack(self, idx):
+        print(f'{self.skills[idx]} 공격 시전!!!')
 
-pika1 = Pikachu('피카츄', '지혜', '번개/백만볼트/천만볼트/전광석화')
-pika1.info()
-p1 = Pokemon('파이리','지혜','화염발사/불기둥')
-p1.info()
+class Pikachu(Pokemon): # class 자식클래스(부모클래스):
+    def __init__(self, owner, skills):
+        super().__init__(owner, skills)     # 부모 코드 가져와야 실행 가능
+        self.name = "피카츄"
+        print(f'{self.name}')
+
+    def attack(self, idx):
+        print(f'[피까피까] {self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전!')
+        
+
+class Ggobboogi(Pokemon):    # inheritance(상속)
+    def __init__(self, owner, skills):
+        super().__init__(owner, skills)     # 부모 코드 가져와야 실행 가능
+        self.name = "꼬부기"
+        print(f'{self.name}')
+
+    def attack(self, idx):
+        print(f'[꼬북꼬북] {self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전!')
+
+pika1 = Pikachu('지혜', '번개/백만볼트')
+ggo1 = Ggobboogi('오바람', '거품/물대포/몸통박치기')
+# print(pika1.owner)
+# pika1.info()
+pika1.attack(1)
+ggo1.attack(2)
