@@ -18,10 +18,10 @@ class Pokemon:
             print(f'==========\n{skill}')
         print("==========")
 
+class Pikachu(Pokemon): # class 자식클래스(부모클래스):
+    pass
 
-p1 = Pokemon('피카츄', '지우', "번개/백만볼트/전광석화")
-p2 = Pokemon('파이리', '지혜', '화염발사/불기둥')
-p3 = Pokemon('꼬부기', '지나', '거품/물대포/몸통박치기')
-
-p2.info()
-p2.info()
+pika1 = Pikachu('피카츄', '지혜', '번개/백만볼트/천만볼트/전광석화')
+pika1.info()
+p1 = Pokemon('파이리','지혜','화염발사/불기둥')
+p1.info()
