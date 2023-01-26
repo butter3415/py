@@ -1,59 +1,27 @@
-# exception
-# prime number v1.4
-# gui (button 1, entry 2, label 1)
-import tkinter as tk
+# class & object
+# 동사형으로 표현
 
-from tkinter import messagebox
+class Pokemon:
+    def __init__(self, name, owner, skills) :   # constructor, 생성자
+        self.name = name    # attribute, field, member variable
+        self.owner = owner
+        self.skills = skills.split('/')
+        print(f'포켓몬 {name} 생성됨.')
 
-def isprime(n):
-    """
-    매개변수로 받은 정수가 소수인지 판정하는 함수
-    :param n: integer number
-    :return: True or False
-    """
-    if n <= 1:
-        return False
-    for k in range(2, n):
-        if n % k == 0:
-            return False
-    return True
-
-
-def click_prime():
-    try:
-        start = int(en_start.get())
-        end = int(en_end.get())
-
-        if end < start:
-            start, end = end, start
-
-        results = ''
-        for number in range(start, end + 1):
-            if isprime(number):
-                #results = results + str(number) + ' '
-                results = results + f'{number} '
-    except ValueError as err :
-        messagebox.showerror('에러정보',f'숫자를 입력해주세요\n{err}')
-    except Exception as other :
-        lbl_result.config(text=f'예외발생 : {other}')
-    else :
-        lbl_result.config(text=results)
-    finally:
-        pass
+    def info(self): # self -> 실행 시점에 객체 자신을 가르킨다.(this)
+        """
+        포켓몬 정보(주인, 이름, 기술들) 출력
+        :return: void
+        """
+        print(f'{self.owner}의 포켓몬은 {self.name}입니다')
+        for skill in self.skills:
+            print(f'==========\n{skill}')
+        print("==========")
 
 
-win = tk.Tk()
-win.title('구간 소수 계산 프로그램')
-win.geometry('300x100')
+p1 = Pokemon('피카츄', '지우', "번개/백만볼트/전광석화")
+p2 = Pokemon('파이리', '지혜', '화염발사/불기둥')
+p3 = Pokemon('꼬부기', '지나', '거품/물대포/몸통박치기')
 
-lbl_result = tk.Label(win, text='아래 두 정수를 입력하세요')
-en_start = tk.Entry(win)
-en_end = tk.Entry(win)
-btn_prime = tk.Button(win, text='소수 계산', command=click_prime)
-
-lbl_result.pack()
-en_start.pack()
-en_end.pack()
-btn_prime.pack(fill='x')
-
-win.mainloop()
+p2.info()
+p2.info()
